@@ -1,6 +1,6 @@
 {
-  "name": "react-native-state-view",
-  "version": "0.0.1",
+  "name": "@yz1311/react-native-state-view",
+  "version": "0.0.3",
   "description": "占位组件，根据loading、content、error、empty等状态显示不同的内容",
   "main": "index.js",
   "types": "index.d.ts",
@@ -11,6 +11,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yz1311/react-native-state-view.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "state-view",

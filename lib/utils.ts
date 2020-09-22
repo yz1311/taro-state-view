@@ -1,4 +1,6 @@
-
+/**
+ * YZStateView的状态枚举
+ */
 export enum LoadDataResultStates {
     none = 'none',
     //正在加载数据，由于全局loading的存在，现在应为透明
@@ -13,13 +15,17 @@ export enum LoadDataResultStates {
     unlogged = 'unlogged',
 }
 
+/**
+ * 基础数据结果对象
+ */
 export interface ReducerResult {
     //是否成功
     success: boolean;
     //时间戳
     timestamp: Date;
     //错误时的错误信息，可能为服务器错误和本地错误
-    error: Error&{status?: number};
+    //success为true时，error为null
+    error: Error & {status?: number};
     //是否显示loading，默认为false
     showLoading: boolean;
     //当前的数据状态
@@ -28,8 +34,24 @@ export interface ReducerResult {
     forceUpdate?: boolean;
 }
 
+/**
+ * 分页数据结果对象
+ */
+export interface PagingResult<T = unknown> {
+    //数据列表
+    dataList: Array<T>;
+    //是否有下一页
+    noMore: boolean;
+    //数据结果对象
+    loadDataResult: ReducerResult;
+}
+
+/**
+ * 创建基础数据结果对象
+ * @param params
+ */
 export const createReducerResult = (
-    params: {showLoading?: boolean; state?: LoadDataResultStates} = undefined,
+    params: Partial<ReducerResult> = undefined,
 ): ReducerResult => {
     let showLoading = true; //默认加载的时候loading界面，如需取消，请传递false过来
     if (params) {
@@ -40,26 +62,41 @@ export const createReducerResult = (
         success: false,
         timestamp: new Date(),
         error: null,
-        ...params,
+        ...(params || {}),
         showLoading,
     };
 };
 
 /**
- *
+ * 创建分页数据结果对象
+ * @param params
+ */
+export const createPagingResult = <T = unknown>(
+    params: Partial<PagingResult<T>> = undefined
+): PagingResult<T> => {
+    return {
+        dataList: [],
+        loadDataResult: createReducerResult(),
+        noMore: false,
+        ...(params || {})
+    };
+}
+
+/**
+ * 转换为分页数据对象
  * @param exitList  已存在的列表数据
  * @param pagingList  返回的分页列表数据
  * @param pageIndex  当前页(从1开始)
  * @param pageSize  页数大小(默认为10)
  * @param totalPage 总页数(可能为空)
  */
-export const dataToPagingResult = (
-    exitList: Array<any>,
-    pagingList: Array<any>,
+export const dataToPagingResult = <T = unknown>(
+    exitList: Array<T>,
+    pagingList: Array<T>,
     pageIndex: number,
     pageSize: number = 10,
     totalPage = undefined,
-) => {
+): PagingResult<T> => {
     let dataList = exitList
         .slice(0, (pageIndex - 1) * pageSize)
         .concat(pagingList);

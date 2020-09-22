@@ -11,12 +11,15 @@ import {
     ActivityIndicator,
     AppState,
     Dimensions,
-    Image, ImageStore,
-    ImageStyle, StyleProp,
+    Image,
+    ImageStore,
+    ImageStyle,
+    StyleProp,
     StyleSheet,
     Text, TextStyle,
     TouchableOpacity,
-    View, ViewStyle,
+    View,
+    ViewStyle,
 } from 'react-native';
 import {createReducerResult, LoadDataResultStates, ReducerResult} from "./utils";
 

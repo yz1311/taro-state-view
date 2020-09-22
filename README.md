@@ -8,7 +8,7 @@
 
 
 ## 功能
-
+占位组件，根据loading、content、error、empty等状态显示不同的内容
 
 ## 开始
 - [安装](#安装)
