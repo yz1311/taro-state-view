@@ -1,20 +1,14 @@
 # teaset-code-push
 
-[![npm version](http://img.shields.io/npm/v/@yz1311/teaset-code-push.svg?style=flat-square)](https://npmjs.org/package/@yz1311/teaset-code-push "View this project on npm")
-[![npm version](http://img.shields.io/npm/dm/@yz1311/teaset-code-push.svg?style=flat-square)](https://npmjs.org/package/@yz1311/teaset-code-push "View this project on npm")
+[![npm version](http://img.shields.io/npm/v/@yz1311/react-native-state-view.svg?style=flat-square)](https://npmjs.org/package/@yz1311/react-native-state-view "View this project on npm")
+[![npm version](http://img.shields.io/npm/dm/@yz1311/react-native-state-view.svg?style=flat-square)](https://npmjs.org/package/@yz1311/react-native-state-view "View this project on npm")
 
 
-## 原由
+## 背景
 
-由于react-native-code-push虽然提供了[对话框](https://docs.microsoft.com/en-us/appcenter/distribution/codepush/react-native#code-try-39)的方式，但是在两端的样式不一，并且无法定制化,所以产生了该库
 
 ## 功能
 
-* 支持动态设置`每次热更新`是否显示对话框(需要修改热更新语句)
-* 包大小、更新内容自定义、下载进度条显示
-* 支持是否强制更新
-* 完全自定义更新对话框
-* 完全typescript支持
 
 ## 开始
 - [安装](#安装)
@@ -157,6 +151,3 @@ successDelay分为三种情况
 
 ## 截图
 
-![](https://tva1.sinaimg.cn/large/006tNbRwgy1gap08fpgzzj30bi0l2dhk.jpg)
-
-![](https://tva1.sinaimg.cn/large/006tNbRwgy1g9smkc6uw4j30c00lxdit.jpg)

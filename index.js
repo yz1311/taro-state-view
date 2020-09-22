@@ -1,7 +1,11 @@
-import CodePushHandler from './lib/CodePushHandler';
-import UpdateView from './lib/UpdateView';
+import StateView from "./lib/stateView";
+import {createReducerResult, LoadDataResultStates, ReducerResult, dataToPagingResult, dataToReducerResult} from './lib/utils';
 
 module.exports = {
-    CodePushHandler,
-    UpdateView
+    StateView,
+    createReducerResult,
+    LoadDataResultStates,
+    ReducerResult,
+    dataToPagingResult,
+    dataToReducerResult,
 };
