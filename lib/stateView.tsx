@@ -4,7 +4,7 @@ import {
     Text,
     Image,
 } from '@tarojs/components';
-import './stateView.scss.scss';
+import './stateView.scss';
 import {AtActivityIndicator} from "taro-ui";
 import {createReducerResult, LoadDataResultStates, ReducerResult} from "./utils";
 const  NetworkErrorPng = require('./img/app_error_network.png').default;

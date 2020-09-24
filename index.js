@@ -1,7 +1,7 @@
 import StateView from "./lib/stateView";
 import {createReducerResult, createPagingResult, LoadDataResultStates, ReducerResult, PagingResult, dataToPagingResult, dataToReducerResult} from './lib/utils';
 
-module.exports = {
+export {
     StateView,
     createReducerResult,
     createPagingResult,
