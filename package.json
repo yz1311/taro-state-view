@@ -1,6 +1,6 @@
 {
-  "name": "@yz1311/react-native-state-view",
-  "version": "0.0.4",
+  "name": "@yz1311/taro-state-view",
+  "version": "0.0.1",
   "description": "占位组件，根据loading、content、error、empty等状态显示不同的内容",
   "main": "index.js",
   "types": "index.d.ts",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yz1311/react-native-state-view.git"
+    "url": "git+https://github.com/yz1311/taro-state-view.git"
   },
   "publishConfig": {
     "access": "public"
@@ -18,7 +18,7 @@
   "keywords": [
     "state-view",
     "teaset",
-    "react-native-state-view",
+    "taro-state-view",
     "stateful"
   ],
   "author": "yz1311",
@@ -32,14 +32,15 @@
   },
   "devDependencies": {
     "@types/react": "^16.9.17",
-    "@types/react-native": "^0.60.27",
-    "react": "~16.9.0",
-    "react-native": "~0.61.4",
-    "react-native-code-push": ">=5.6.0",
+    "@tarojs/components": "^3.0.11",
+    "@tarojs/taro": "^3.0.11",
+    "react": "^16.10.0",
+    "taro-ui": "3.0.0-alpha.3",
     "typescript": "^3.5.2"
   },
   "peerDependencies": {
-    "react-native-code-push": ">=5.6.0",
-    "react-native-webview": "^6.9.0"
+    "@tarojs/taro": "^3.0.0",
+    "react": "^16.10.0",
+    "taro-ui": "3.0.0-alpha.3"
   }
 }

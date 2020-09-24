@@ -1,0 +1,45 @@
+//由于stateView是包裹在其他元素外面，所以下面的子类名称不能太普通
+.state-view-container {
+  display: flex;
+  flex:1;
+  position: relative;
+  flex-direction: column;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 360px;
+  .state-view-container-title {
+    color: #333;
+    font-size: 28px;
+    margin-top: 20px;
+  }
+
+  .state-view-container-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .state-view-container-placeholder-img {
+    width: 240px;
+    height: 280px;
+  }
+
+  .state-view-container-errorButton {
+    padding: 28px 0px;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: center;;
+    margin: 20px 40px 0px;
+    border-radius: 12px;
+  }
+
+  .state-view-container-loading {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 36px;
+  }
+}
