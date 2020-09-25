@@ -8,6 +8,8 @@
 node_modules
 screenshots
 npm-debug.log
-/android/build
 /ios/**/*xcuserdata*
 /ios/**/*xcshareddata*
+lib/img/
+lib/*.js.map
+lib/*.ts*
