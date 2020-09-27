@@ -193,7 +193,7 @@ export default class StateView extends PureComponent<IProps, IState> {
                     tempErrorTitle = errorTitle;
                 }
                 let imageRes;
-                if (!error.status) {
+                if (error&&!error.status) {
                     imageRes = NetworkErrorPng;
                     // 分为无网络和服务器挂了
                     if (!this.props.isConnected) {
@@ -201,7 +201,7 @@ export default class StateView extends PureComponent<IProps, IState> {
                     }
                 }
                 // 此时是逻辑错误
-                else if (error.state >= 200 && error.state < 300) {
+                else if (error&&error.state >= 200 && error.state < 300) {
                     detailTitle = '';
                 }
                 // 此时是服务器错误 status = 300+
