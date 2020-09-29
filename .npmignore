@@ -12,4 +12,3 @@ npm-debug.log
 /ios/**/*xcshareddata*
 lib/img/
 lib/*.js.map
-lib/*.ts*
