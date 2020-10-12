@@ -149,7 +149,7 @@ export default class StateView extends PureComponent<IProps, IState> {
                 return (
                     <View className='state-view-container' style={`${containerStyle}`}>
                         {this.props.children}
-                        <View className='container'
+                        <View className='state-view-empty-container'
                               onClick={(args) => {
                                   if (errorButtonAction) {
                                       let lastTimestamp = loadDataResult.timestamp;

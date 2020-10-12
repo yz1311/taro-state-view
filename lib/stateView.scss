@@ -4,12 +4,18 @@
   flex:1;
   position: relative;
   flex-direction: column;
-  justify-content: center !important;
   min-height: 360px;
   .state-view-container-title {
     color: #333;
     font-size: 28px;
     margin-top: 20px;
+  }
+
+  .state-view-empty-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .state-view-container-body {
