@@ -153,7 +153,7 @@ export default class StateView extends PureComponent<IProps, IState> {
                               onClick={(args) => {
                                   if (errorButtonAction) {
                                       let lastTimestamp = loadDataResult.timestamp;
-                                      errorButtonAction(args);
+                                      errorButtonAction();
                                       if (emptyReloadDelay > 0) {
                                           setTimeout(() => {
                                               //判断数据是否已经发生变化
@@ -217,7 +217,7 @@ export default class StateView extends PureComponent<IProps, IState> {
                     <View className='state-view-container'
                           onClick={(args) => {
                               let lastTimestamp = loadDataResult.timestamp;
-                              errorButtonAction(args);
+                              errorButtonAction();
                               if (errorReloadDelay > 0) {
                                   setTimeout(() => {
                                       //判断数据是否已经发生变化
