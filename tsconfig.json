@@ -10,11 +10,13 @@
       "sourceMap": true,
       "watch": false,
       "resolveJsonModule": true,
+      "skipLibCheck": true,
       "allowSyntheticDefaultImports": true,
       "lib": [
         "es2015.promise",
         "es2015",
-        "es2016"
+        "es2016",
+        "dom"
       ]
     },
     "filesGlob": [
