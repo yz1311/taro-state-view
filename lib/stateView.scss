@@ -17,6 +17,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #f4f4f4;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
   }
 
   .state-view-container-body {
@@ -42,11 +48,4 @@
     border-radius: 12px;
   }
 
-  .state-view-container-loading {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
 }

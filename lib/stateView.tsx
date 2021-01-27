@@ -114,7 +114,8 @@ export default class StateView extends PureComponent<IProps, IState> {
 
     render () {
         const {
-            containerStyle, bodyStyle,
+            containerStyle,
+            bodyStyle,
             loadDataResult,
             loadingView, loadingTitle, loadingTitleStyle,
             placeholderImageRes, placeholderTitle, placeholderImageStyle, placeholderView,
@@ -126,12 +127,13 @@ export default class StateView extends PureComponent<IProps, IState> {
         const {dataState} = this.state;
         // 从外部调用静态属性可以，但是组件内部调用的话为undefined,不知道为啥
         // 所以用常量代替
+        let overlayView = null;
         switch (dataState) {
             // 由于有全局loading的存在，现在不显示
             case LoadDataResultStates.loading:
-                return (
-                    <View className='state-view-container' style={`${containerStyle}`}>
-                        <View className='state-view-container-loading' style={`${loadingTitleStyle && loadingTitleStyle}`}>
+                overlayView = (
+                    <View className='state-view-empty-container' style={`${loadingTitleStyle && loadingTitleStyle}`}>
+                        <View style="display: flex; flex-direction: row; align-items: center;">
                             {loadingView || [
                                 <AtActivityIndicator key={0} size={45}></AtActivityIndicator>
                                 ,
@@ -141,48 +143,48 @@ export default class StateView extends PureComponent<IProps, IState> {
                         </View>
                     </View>
                 );
+                break;
             // 显示placeholder
             case LoadDataResultStates.empty:
                 // 为了将界面撑起来，并且为后面的下拉刷新作准备
                 // 不能使用数组，必须使用view将两个对象套起来
                 // TouchableOpacity外层还包裹一层view是为了不让点击的时候，看到底部的内容
-                return (
-                    <View className='state-view-container' style={`${containerStyle}`}>
-                        {this.props.children}
-                        <View className='state-view-empty-container'
-                              onClick={(args) => {
-                                  if (errorButtonAction) {
-                                      let lastTimestamp = loadDataResult.timestamp;
-                                      errorButtonAction();
-                                      if (emptyReloadDelay > 0) {
-                                          setTimeout(() => {
-                                              //判断数据是否已经发生变化
-                                              if (loadDataResult.timestamp === lastTimestamp) {
-                                                  this.setState({
-                                                      dataState: initialLoadDataResultState,
-                                                  });
-                                              }
-                                          }, emptyReloadDelay);
-                                      } else {
-                                          this.setState({
-                                              dataState: initialLoadDataResultState,
-                                          });
-                                      }
+                overlayView = (
+                    <View className='state-view-empty-container'
+                          onClick={(args) => {
+                              if (errorButtonAction) {
+                                  let lastTimestamp = loadDataResult.timestamp;
+                                  errorButtonAction();
+                                  if (emptyReloadDelay > 0) {
+                                      setTimeout(() => {
+                                          //判断数据是否已经发生变化
+                                          if (loadDataResult.timestamp === lastTimestamp) {
+                                              this.setState({
+                                                  dataState: initialLoadDataResultState,
+                                              });
+                                          }
+                                      }, emptyReloadDelay);
+                                  } else {
+                                      this.setState({
+                                          dataState: initialLoadDataResultState,
+                                      });
                                   }
-                              }}
-                              style={`position:absolute;left:0;right:0;top:0;bottom:0;${containerStyle}`}
-                        >
-                            {placeholderView || <View className='state-view-container-body' style={`${bodyStyle}`}>
-                                <Image src={placeholderImageRes || NoContentPng}
-                                       className='state-view-container-placeholder-img'
-                                       style={`${placeholderImageStyle}`} mode='aspectFit'
-                                />
-                                <Text style={`color:#666;font-size: 32rpx;${placeholderTitleStyle}`}>
-                                    {placeholderTitle || '暂时没有数据'}
-                                </Text>
-                            </View>}
-                        </View>
-                    </View>);
+                              }
+                          }}
+                          style={`${containerStyle}`}
+                    >
+                        {placeholderView || <View className='state-view-container-body' style={`${bodyStyle}`}>
+                            <Image src={placeholderImageRes || NoContentPng}
+                                   className='state-view-container-placeholder-img'
+                                   style={`${placeholderImageStyle}`} mode='aspectFit'
+                            />
+                            <Text style={`color:#666;font-size: 32rpx;${placeholderTitleStyle}`}>
+                                {placeholderTitle || '暂时没有数据'}
+                            </Text>
+                        </View>}
+                    </View>
+                );
+                break;
             // 显示placeholder
             case LoadDataResultStates.error:
                 let tempErrorTitle = '服务器开小差了，请等等再试吧...';
@@ -212,9 +214,8 @@ export default class StateView extends PureComponent<IProps, IState> {
                         detailTitle = '';
                     }
                 }
-                return (
-                    // 为了将界面撑起来，并且为后面的下拉刷新作准备
-                    <View className='state-view-container'
+                overlayView = (
+                    <View className='state-view-empty-container'
                           onClick={(args) => {
                               let lastTimestamp = loadDataResult.timestamp;
                               errorButtonAction();
@@ -233,7 +234,8 @@ export default class StateView extends PureComponent<IProps, IState> {
                                   });
                               }
                           }}
-                          style={`${containerStyle}`}>
+                          style={`${containerStyle}`}
+                    >
                         <View className='state-view-container-body' style={`${bodyStyle}`}>
                             <Image
                                 className='state-view-container-placeholder-img'
@@ -256,16 +258,19 @@ export default class StateView extends PureComponent<IProps, IState> {
                         </View>
                     </View>
                 );
+                break;
             case LoadDataResultStates.none:
             //有数据，则直接显示
             case LoadDataResultStates.content:
             default:
-                return (
-                    <View className='state-view-container' style={`${containerStyle}`}>
-                        {this.props.children}
-                    </View>
-                );
+                overlayView = null;
                 break;
         }
+        return (
+            <View className="state-view-container"  style={`${containerStyle}`}>
+                {this.props.children}
+                {overlayView}
+            </View>
+        );
     }
 }
