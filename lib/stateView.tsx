@@ -135,7 +135,7 @@ export default class StateView extends PureComponent<IProps, IState> {
                     <View className='state-view-empty-container' style={`${loadingTitleStyle && loadingTitleStyle}`}>
                         <View style="display: flex; flex-direction: row; align-items: center;">
                             {loadingView || [
-                                <AtActivityIndicator key={0} size={45}></AtActivityIndicator>
+                                <AtActivityIndicator key={0} size={35}></AtActivityIndicator>
                                 ,
                                 <Text key={1} className='state-view-container-title' >{loadingTitle || '正在加载中…'}</Text>
                             ]
