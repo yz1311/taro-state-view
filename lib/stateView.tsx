@@ -60,9 +60,13 @@ export default class StateView extends PureComponent<IProps, IState> {
         errorReloadDelay: 0,
     };
 
-    readonly state: IState = {
-        dataState: initialLoadDataResultState,
-    };
+    constructor(props:IProps) {
+        super(props);
+        this.state = {
+            dataState: props.loadDataResult && props.loadDataResult.state ?
+                props.loadDataResult.state : initialLoadDataResultState
+        };
+    }
 
     componentDidMount () {
         // AppState.addEventListener('change', this._handleAppStateChange);
